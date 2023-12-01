@@ -1890,6 +1890,17 @@ public class InAppWebView: WKWebView, UIScrollViewDelegate, WKUIDelegate,
         
         inAppBrowserDelegate?.didStartNavigation(url: url)
     }
+
+    @available(iOS 15, *)
+    public func webView(
+        _ webView: WKWebView,
+        requestMediaCapturePermissionFor origin: WKSecurityOrigin,
+        initiatedByFrame frame: WKFrameInfo,
+        type: WKMediaCaptureType,
+        decisionHandler: @escaping (WKPermissionDecision) -> Void
+    ) {
+        decisionHandler(.grant)
+    }                              
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         initializeWindowIdJS()
